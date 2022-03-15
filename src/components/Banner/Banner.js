@@ -41,12 +41,12 @@ function Banner() {
               fontFamily: "Montserrat",
             }}
           >
-            Crypto Hunter
+            Trade Nation
           </Typography>
           <Typography
             variant="subtitle2"
             style={{
-              color: "darkgrey",
+              color: "#00001E",
               textTransform: "capitalize",
               fontFamily: "Montserrat",
             }}

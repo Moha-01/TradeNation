@@ -35,16 +35,16 @@ export default function CoinsTable() {
 
   const useStyles = makeStyles({
     row: {
-      backgroundColor: "#16171a",
+      backgroundColor: "#00001E",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: "#131111",
+        backgroundColor: "#00001E",
       },
       fontFamily: "Montserrat",
     },
     pagination: {
       "& .MuiPaginationItem-root": {
-        color: "gold",
+        color: "0B0EDA",
       },
     },
   });
@@ -93,22 +93,22 @@ export default function CoinsTable() {
           Cryptocurrency Prices by Market Cap
         </Typography>
         <TextField
-          label="Search For a Crypto Currency.."
+          label="Search"
           variant="outlined"
           style={{ marginBottom: 20, width: "100%" }}
           onChange={(e) => setSearch(e.target.value)}
         />
         <TableContainer component={Paper}>
           {loading ? (
-            <LinearProgress style={{ backgroundColor: "gold" }} />
+            <LinearProgress style={{ backgroundColor: "0B0EDA" }} />
           ) : (
             <Table aria-label="simple table">
-              <TableHead style={{ backgroundColor: "#EEBC1D" }}>
+              <TableHead style={{ backgroundColor: "#00001E" }}>
                 <TableRow>
                   {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                     <TableCell
                       style={{
-                        color: "black",
+                        color: "00001E",
                         fontWeight: "700",
                         fontFamily: "Montserrat",
                       }}
@@ -157,7 +157,7 @@ export default function CoinsTable() {
                             >
                               {row.symbol}
                             </span>
-                            <span style={{ color: "darkgrey" }}>
+                            <span style={{ color: "00001E" }}>
                               {row.name}
                             </span>
                           </div>
