@@ -1,0 +1,30 @@
+Using:
+
+- React JS -> JavaScript Framework
+ --> npx create-react-app Crypto-Hunter
+
+- Material UI v4 -> React Komponent für schnelleres und einfacheres Web-Entwicklung ähnlich wie Bootstrap
+	* Intallation: npm install @material-ui/core @material-ui/lab    -> (Eingabe im Terminal im Projekt Ordner)
+
+
+- Chart JS v2
+
+
+Weitere Installationen: 
+- npm i react-router-dom
+- Benutze Extension: ES7+ React/Redux/GraphQL/React-Native snippets
+- npm install -g node-modules
+- npm i axios
+- npm i react-html-parser --force
+- npm i react-alice-carousel
+- npm i react-chartjs-2
+- npm install assert --save
+- npm install buffer --save
+
+
+By fehlern mit --force instalieren
+
+
+You need to enable JavaScript to run this app. --> Lösung: 
+
+NodeJs requiered
