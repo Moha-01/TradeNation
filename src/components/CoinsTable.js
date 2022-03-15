@@ -105,7 +105,7 @@ export default function CoinsTable() {
             <Table aria-label="simple table">
               <TableHead style={{ backgroundColor: "#2CC3DB" }}>
                 <TableRow>
-                  {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
+                  {["Name", "Price", "24h Change", "Market Cap"].map((head) => (
                     <TableCell
                       style={{
                         color: "black",
@@ -113,7 +113,7 @@ export default function CoinsTable() {
                         fontFamily: "Montserrat",
                       }}
                       key={head}
-                      align={head === "Coin" ? "" : "right"}
+                      align={head === "Name" ? "" : "right"}
                     >
                       {head}
                     </TableCell>
@@ -163,8 +163,10 @@ export default function CoinsTable() {
                           </div>
                         </TableCell>
                         <TableCell align="right">
-                          {symbol}{" "}
-                          {numberWithCommas(row.current_price.toFixed(2))}
+                        {numberWithCommas(row.current_price.toFixed(2))}
+                        {" "}
+                        {symbol}
+                          
                         </TableCell>
                         <TableCell
                           align="right"
@@ -177,11 +179,13 @@ export default function CoinsTable() {
                           {row.price_change_percentage_24h.toFixed(2)}%
                         </TableCell>
                         <TableCell align="right">
-                          {symbol}{" "}
-                          {numberWithCommas(
+                        {numberWithCommas(
                             row.market_cap.toString().slice(0, -6)
                           )}
                           M
+                          {" "}
+                          {symbol}
+                          
                         </TableCell>
                       </TableRow>
                     );

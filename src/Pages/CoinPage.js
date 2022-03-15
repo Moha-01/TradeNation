@@ -122,10 +122,10 @@ const CoinPage = () => {
                 fontFamily: "Montserrat",
               }}
             >
-              {symbol}{" "}
               {numberWithCommas(
                 coin?.market_data.current_price[currency.toLowerCase()]
-              )}
+              )}{" "}{symbol}
+              
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
@@ -139,13 +139,13 @@ const CoinPage = () => {
                 fontFamily: "Montserrat",
               }}
             >
-              {symbol}{" "}
               {numberWithCommas(
                 coin?.market_data.market_cap[currency.toLowerCase()]
                   .toString()
                   .slice(0, -6)
               )}
-              M
+              M{" "}{symbol}
+              
             </Typography>
           </span>
         </div>
