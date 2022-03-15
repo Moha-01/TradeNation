@@ -35,16 +35,16 @@ export default function CoinsTable() {
 
   const useStyles = makeStyles({
     row: {
-      backgroundColor: "#00001E",
+      backgroundColor: "#16171a",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: "#00001E",
+        backgroundColor: "#131111",
       },
       fontFamily: "Montserrat",
     },
     pagination: {
       "& .MuiPaginationItem-root": {
-        color: "0B0EDA",
+        color: "#0C5FDC",
       },
     },
   });
@@ -90,7 +90,7 @@ export default function CoinsTable() {
           variant="h4"
           style={{ margin: 18, fontFamily: "Montserrat" }}
         >
-          Cryptocurrency Prices by Market Cap
+          Prices by Market Cap
         </Typography>
         <TextField
           label="Search"
@@ -100,15 +100,15 @@ export default function CoinsTable() {
         />
         <TableContainer component={Paper}>
           {loading ? (
-            <LinearProgress style={{ backgroundColor: "0B0EDA" }} />
+            <LinearProgress style={{ backgroundColor: "#0C5FDC" }} />
           ) : (
             <Table aria-label="simple table">
-              <TableHead style={{ backgroundColor: "#00001E" }}>
+              <TableHead style={{ backgroundColor: "#2CC3DB" }}>
                 <TableRow>
                   {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                     <TableCell
                       style={{
-                        color: "00001E",
+                        color: "black",
                         fontWeight: "700",
                         fontFamily: "Montserrat",
                       }}
@@ -157,7 +157,7 @@ export default function CoinsTable() {
                             >
                               {row.symbol}
                             </span>
-                            <span style={{ color: "00001E" }}>
+                            <span style={{ color: "darkgrey" }}>
                               {row.name}
                             </span>
                           </div>

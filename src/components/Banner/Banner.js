@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
-    backgroundImage: "url(./banner2.jpg)",
+    backgroundImage: "url(./banner3.gif)",
   },
   bannerContent: {
     height: 400,
@@ -46,7 +46,7 @@ function Banner() {
           <Typography
             variant="subtitle2"
             style={{
-              color: "#00001E",
+              color: "darkgrey",
               textTransform: "capitalize",
               fontFamily: "Montserrat",
             }}
