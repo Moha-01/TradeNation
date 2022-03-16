@@ -95,8 +95,9 @@ export default function CoinsTable() {
         <TextField
           label="Search"
           variant="outlined"
-          style={{ marginBottom: 20, width: "100%" }}
+          style={{ marginBottom: 20, width: "100%" }}  
           onChange={(e) => setSearch(e.target.value)}
+          onInput={value => value.target.value = value.target.value.toLowerCase()} //toLowerCase() for optimal search
         />
         <TableContainer component={Paper}>
           {loading ? (
