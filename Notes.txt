@@ -29,6 +29,5 @@ You need to enable JavaScript to run this app. --> Lösung:
 
 NodeJs requiered
 
-test
-
 API KEY Alpha Vantage:  DPN5UETZNKBHUWSC
+API KEY IEX: pk_d90c923fba954c0db0a0713418bb5839
