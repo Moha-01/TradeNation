@@ -30,3 +30,5 @@ You need to enable JavaScript to run this app. --> Lösung:
 NodeJs requiered
 
 test
+
+API KEY Alpha Vantage:  DPN5UETZNKBHUWSC
