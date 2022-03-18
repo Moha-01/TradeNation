@@ -10,12 +10,10 @@ import {
 } from "@material-ui/core";
 import SelectButton from "./SelectButton";
 import { chartDays } from "../config/data";
-import { CryptoState } from "../CryptoContext";
 
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
-  const { currency } = CryptoState();
   const [flag,setflag] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
@@ -39,7 +37,7 @@ const CoinInfo = ({ coin }) => {
   const classes = useStyles();
 
   const fetchHistoricData = async () => {
-    const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
+    const { data } = await axios.get(HistoricalChart(coin.id, days, "USD"));
     setflag(true);
     setHistoricData(data.prices);
   };
@@ -85,7 +83,7 @@ const CoinInfo = ({ coin }) => {
                 datasets: [
                   {
                     data: historicData.map((coin) => coin[1]),
-                    label: `Price ( Past ${days} Days ) in ${currency}`,
+                    label: `Price ( Past ${days} Days ) in $`,
                     borderColor: "#2CC3DB",
                   },
                 ],

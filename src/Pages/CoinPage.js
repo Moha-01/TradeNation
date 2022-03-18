@@ -6,13 +6,11 @@ import ReactHtmlParser from "react-html-parser";
 import CoinInfo from "../components/CoinInfo";
 import { SingleCoin } from "../config/api";
 import { numberWithCommas } from "../components/CoinsTable";
-import { CryptoState } from "../CryptoContext";
 
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
 
-  const { currency, symbol } = CryptoState();
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
@@ -123,8 +121,8 @@ const CoinPage = () => {
               }}
             >
               {numberWithCommas(
-                coin?.market_data.current_price[currency.toLowerCase()]
-              )}{" "}{symbol}
+                coin?.market_data.current_price["USD".toLowerCase()]
+              )}{" $"}
               
             </Typography>
           </span>
@@ -140,11 +138,11 @@ const CoinPage = () => {
               }}
             >
               {numberWithCommas(
-                coin?.market_data.market_cap[currency.toLowerCase()]
+                coin?.market_data.market_cap["USD".toLowerCase()]
                   .toString()
                   .slice(0, -6)
               )}
-              M{" "}{symbol}
+              M{" $"}
               
             </Typography>
           </span>

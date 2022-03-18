@@ -49,7 +49,7 @@ function Header() {
               variant="h6"
               className={classes.title}
             >
-              Trade Nation
+              TradeNation
             </Typography>
             {/* <Button color="inherit">Login</Button> */}
             <Select
@@ -57,7 +57,7 @@ function Header() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={tablePage}
-              style={{ width: 100, height: 40, marginLeft: 15 }}
+              style={{ width: 120, height: 40, marginLeft: 15 }}
               onChange={(e) => setPage(e.target.value)}
             >
               <MenuItem value={"COINS"}>COINS</MenuItem>

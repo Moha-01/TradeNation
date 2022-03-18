@@ -31,7 +31,7 @@ export default function CoinsTable() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  const { tablePage, symbol } = CryptoState();
+  const { tablePage } = CryptoState();
 
   const useStyles = makeStyles({
     row: {
@@ -167,8 +167,7 @@ export default function CoinsTable() {
                           </TableCell>
                           <TableCell align="right">
                           {numberWithCommas(row.current_price.toFixed(2))}
-                          {" "}
-                          {symbol}
+                          {" $"}
                             
                           </TableCell>
                           <TableCell
@@ -186,8 +185,7 @@ export default function CoinsTable() {
                               row.market_cap.toString().slice(0, -6)
                             )}
                             M
-                            {" "}
-                            {symbol}
+                            {" $"}
                             
                           </TableCell>
                         </TableRow>

@@ -41,7 +41,7 @@ function Banner() {
               fontFamily: "Montserrat",
             }}
           >
-            Trade Nation
+            TradeNation
           </Typography>
           <Typography
             variant="subtitle2"
