@@ -24,13 +24,23 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
-}));
+  center: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "100%",
+    height: "100%"
+
+}}));
+
+
 
 function Banner() {
   const classes = useStyles();
 
   return (
     <div className={classes.banner}>
+      <img src="logoTransparent.png" alt="Logo" class = "center"></img>
       <Container className={classes.bannerContent}>
         <div className={classes.tagline}>
           <Typography
@@ -41,7 +51,7 @@ function Banner() {
               fontFamily: "Montserrat",
             }}
           >
-            TradeNation
+              TradeNation
           </Typography>
           <Typography
             variant="subtitle2"
@@ -54,6 +64,7 @@ function Banner() {
             Get all the Info regarding your favorite Crypto Currency
           </Typography>
         </div>
+        
         <Carousel />
       </Container>
     </div>
