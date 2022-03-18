@@ -34,3 +34,4 @@ API KEY IEX: pk_d95aa31868b74f6db51b05ecc5376ce5   (new1)
 API KEY IEX: pk_a18f9fb063d24119b73a8f532bda731c   (new2)
 API KEY IEX: pk_99dc5983c38b4b46bbc750f6b2081537   (new3)
 API KEY IEX: pk_0b6c252c9a1b4774ac8a134fae36c94b   (new4)
+pk_74ca0d7c96c64d44ad82eccb5c71a8f9
