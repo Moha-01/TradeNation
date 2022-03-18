@@ -35,7 +35,7 @@ const darkTheme = createTheme({
 
 function Header() {
   const classes = useStyles();
-  const { currency, setCurrency } = CryptoState();
+  const { tablePage, setPage } = CryptoState();
 
   const history = useHistory();
 
@@ -56,12 +56,13 @@ function Header() {
               variant="outlined"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={currency}
+              value={tablePage}
               style={{ width: 100, height: 40, marginLeft: 15 }}
-              onChange={(e) => setCurrency(e.target.value)}
+              onChange={(e) => setPage(e.target.value)}
             >
-              <MenuItem value={"USD"}>USD</MenuItem>
-              <MenuItem value={"EUR"}>EUR</MenuItem>
+              <MenuItem value={"COINS"}>COINS</MenuItem>
+              <MenuItem value={"STOCKS"}>STOCKS</MenuItem>
+              <MenuItem value={"FOREX"}>FOREX</MenuItem>
             </Select>
           </Toolbar>
         </Container>

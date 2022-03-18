@@ -3,16 +3,17 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const Crypto = createContext();
 
 const CryptoContext = ({ children }) => {
-  const [currency, setCurrency] = useState("EUR");
-  const [symbol, setSymbol] = useState("€");
+  const [tablePage, setPage] = useState("COINS");
+  const [symbol, setSymbol] = useState("COINS");
 
   useEffect(() => {
-    if (currency === "EUR") setSymbol("€");
-    else if (currency === "USD") setSymbol("$");
-  }, [currency]);
+    if (tablePage === "COINS") setSymbol("COINS");
+    else if (tablePage === "STOCKS") setSymbol("STOCKS");
+    else if (tablePage === "FOREX") setSymbol("FOREX");
+  }, [tablePage]);
 
   return (
-    <Crypto.Provider value={{ currency, setCurrency, symbol }}>
+    <Crypto.Provider value={{ tablePage, setPage, symbol }}>
       {children}
     </Crypto.Provider>
   );
