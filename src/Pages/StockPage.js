@@ -4,30 +4,37 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 import CoinInfo from "../components/CoinInfo";
-import { SingleCoin } from "../config/api";
 import { StockPrice } from "../config/api";
+import { StockLogo } from "../config/api";
+import { StockCompany } from "../config/api";
 import { numberWithCommas } from "../components/CoinsTable";
 
-
-const CoinPage = () => {
-  const { id } = useParams();
+const StockPage = () => {
+  const { symbol } = useParams();
   const [stock, setStock] = useState();
-  const [coin, setCoin] = useState();
-  
+  const [stockImage, setStockImage] = useState();
+  const [stockInfo, setStockInfo] = useState();
 
 
-  const fetchCoin = async () => {
-    const { data } = await axios.get(SingleCoin(id));
-    const {stock} = await axios.get(StockPrice("IBM"));
-    console.log(stock);
-
-    setCoin(data);
-    setStock(stock);
+  const fetchStock = async () => {
+    const { data } = await axios.get(StockPrice(symbol));
+    setStock(data);
+    console.log(data);
+    axios.get(StockLogo(symbol))
+    .then((response) => {
+      console.log(response.data.url);
+      setStockImage(response.data.url);
+    })
+    axios.get(StockCompany(symbol))
+    .then((response) => {
+      console.log(response.data.description);
+      setStockInfo(response.data.description);
+    })
   };
 
   useEffect(() => {
-    console.log("CoinPage");
-    fetchCoin();
+    console.log("StockPage");
+    fetchStock();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -84,38 +91,25 @@ const CoinPage = () => {
 
   const classes = useStyles();
 
-  if (!coin) return <LinearProgress style={{ backgroundColor: "#0C5FDC" }} />;
+  if (!stock) return <LinearProgress style={{ backgroundColor: "#0C5FDC" }} />;
 
   return (
     <div className={classes.container}>
       <div className={classes.sidebar}>
         <img
-          src={coin?.image.large}
-          alt={coin?.name}
+          src={stockImage}
+          alt={stock.symbol}
           height="200"
           style={{ marginBottom: 20 }}
         />
         <Typography variant="h3" className={classes.heading}>
-          {stock?.symbol}
+          {stock.symbol}
         </Typography>
         <Typography variant="subtitle1" className={classes.description}>
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
+          {stockInfo}
         </Typography>
         <div className={classes.marketData}>
-          <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Rank: Hi
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Montserrat",
-              }}
-            >
-              {stock?.marketCap}
-            </Typography>
-          </span>
+
 
           <span style={{ display: "flex" }}>
             <Typography variant="h5" className={classes.heading}>
@@ -128,10 +122,7 @@ const CoinPage = () => {
                 fontFamily: "Montserrat",
               }}
             >
-              {numberWithCommas(
-                coin?.market_data.current_price["USD".toLowerCase()]
-              )}{" $"}
-              
+              {stock.latestPrice}$
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
@@ -145,20 +136,16 @@ const CoinPage = () => {
                 fontFamily: "Montserrat",
               }}
             >
-              {numberWithCommas(
-                coin?.market_data.market_cap["USD".toLowerCase()]
-                  .toString()
-                  .slice(0, -6)
-              )}
-              M{" $"}
+              {stock.marketCap}
+              {" $"}
               
             </Typography>
           </span>
         </div>
       </div>
-      <CoinInfo coin={coin} />
+
     </div>
   );
 };
 
-export default CoinPage;
+export default StockPage;

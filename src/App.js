@@ -3,7 +3,10 @@ import Homepage from "./Pages/HomePage";
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import CoinPage from "./Pages/CoinPage";
+import StockPage from"./Pages/StockPage";
 import Header from "./components/Header";
+
+import { CryptoState } from "../src/CryptoContext";
 
 const useStyles = makeStyles(() => ({
   App: {
@@ -16,12 +19,17 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
 
+  const { tablePage } = CryptoState();
+
+
+
   return (
     <BrowserRouter>
       <div className={classes.App}>
         <Header />
         <Route path="/" component={Homepage} exact />
         <Route path="/coins/:id" component={CoinPage} exact />
+        <Route path="/stocks/:symbol" component={StockPage} exact />
       </div>
     </BrowserRouter>
   );

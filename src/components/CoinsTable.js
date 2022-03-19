@@ -85,8 +85,8 @@ export default function CoinsTable() {
   useEffect(() => {
     fetchCoins();
     fetchStocks("IBM");
-    //fetchStocks("AMZN");
-    //fetchStocks("TSLA");
+    fetchStocks("AMZN");
+    fetchStocks("TSLA");
     //fetchStocks("BNTX");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
@@ -282,9 +282,9 @@ export default function CoinsTable() {
                 <TableBody>
                   {handleStockSearch().map(item => (                 
                   <TableRow
-                          onClick={() => history.push(`/coins/${item.id}`)}
+                          onClick={() => history.push(`/stocks/${item.symbol}`)}
                           className={classes.row}
-                          key={item.companyName}>
+                          key={item.symbol}>
                           <TableCell
                             component="th"
                             scope="row"
