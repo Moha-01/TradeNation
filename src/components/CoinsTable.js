@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import { CoinList } from "../config/api";
+import { StockPrice } from "../config/api";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
@@ -27,6 +28,7 @@ export function numberWithCommas(x) {
 
 export default function CoinsTable() {
   const [coins, setCoins] = useState([]);
+  const [stocks, setStocks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -70,12 +72,26 @@ export default function CoinsTable() {
     setLoading(false);
   };
 
+  const fetchStocks = async (symbol) => {
+    setLoading(true);
+    const { data } = await axios.get(StockPrice(symbol));
+    console.log(data);
+    setStocks(prevArray => [...prevArray, data]);
+    setLoading(false);
+  };
+
+  
+  //Alle Stocks are fetched seperately, maybe a List can be implemented
   useEffect(() => {
     fetchCoins();
+    fetchStocks("IBM");
+    //fetchStocks("AMZN");
+    //fetchStocks("TSLA");
+    //fetchStocks("BNTX");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
 
-  const handleSearch = () => {
+  const handleCoinSearch = () => {
     return coins.filter(
       (coin) =>
         coin.name.toLowerCase().includes(search) ||
@@ -83,9 +99,16 @@ export default function CoinsTable() {
     );
   };
 
+  const handleStockSearch = () => {
+    return stocks.filter(
+      (stock) =>
+        stock.companyName.toLowerCase().includes(search) ||
+        stock.symbol.toLowerCase().includes(search)
+    );
+  };
+
   if(tablePage === "COINS"){
     return (
-    
       <ThemeProvider theme={darkTheme}>
         <Container style={{ textAlign: "center" }}>
           <Typography
@@ -125,7 +148,7 @@ export default function CoinsTable() {
                 </TableHead>
   
                 <TableBody>
-                  {handleSearch()
+                  {handleCoinSearch()
                     .slice((page - 1) * 10, (page - 1) * 10 + 10)
                     .map((row) => {
                       const profit = row.price_change_percentage_24h > 0;
@@ -198,7 +221,7 @@ export default function CoinsTable() {
   
           {/* Comes from @material-ui/lab */}
           <Pagination
-            count={(handleSearch()?.length / 10).toFixed(0)}
+            count={(handleCoinSearch()?.length / 10).toFixed(0)}
             style={{
               padding: 20,
               width: "100%",
@@ -217,9 +240,113 @@ export default function CoinsTable() {
   }
 
   if(tablePage === "STOCKS"){
-    return(
-      <div>STOCKS LIST</div>
-
+    return (
+      <ThemeProvider theme={darkTheme}>
+        <Container style={{ textAlign: "center" }}>
+          <Typography
+            variant="h4"
+            style={{ margin: 18, fontFamily: "Montserrat" }}
+          >
+            Stock List
+          </Typography>
+          <TextField
+            label="Search"
+            variant="outlined"
+            style={{ marginBottom: 20, width: "100%" }}  
+            onChange={(e) => setSearch(e.target.value)}
+            onInput={value => value.target.value = value.target.value.toLowerCase()} //toLowerCase() for optimal search
+          />
+          <TableContainer component={Paper}>
+            {loading ? (
+              <LinearProgress style={{ backgroundColor: "#0C5FDC" }} />
+            ) : (
+              <Table aria-label="simple table">
+                <TableHead style={{ backgroundColor: "#2CC3DB" }}>
+                  <TableRow>
+                    {["Name", "Price", "24h Change", "Market Cap"].map((head) => (
+                      <TableCell
+                        style={{
+                          color: "black",
+                          fontWeight: "700",
+                          fontFamily: "Montserrat",
+                        }}
+                        key={head}
+                        align={head === "Name" ? "" : "right"}
+                      >
+                        {head}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+  
+                <TableBody>
+                  {handleStockSearch().map(item => (                 
+                  <TableRow
+                          onClick={() => history.push(`/coins/${item.id}`)}
+                          className={classes.row}
+                          key={item.companyName}>
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            style={{
+                              display: "flex",
+                              gap: 15,
+                            }}
+                          >
+                            <div
+                              style={{ display: "flex", flexDirection: "column" }}
+                            >
+                            <span
+                                style={{
+                                  textTransform: "uppercase",
+                                  fontSize: 22,
+                                }}
+                              >
+                                {item.symbol}
+                              </span>
+                              <span
+                                style={{
+                                  fontSize: 22,}}
+                                >
+                                {item.companyName}
+                              </span>
+                              <span style={{ color: "darkgrey" }}>
+                                {stocks.symbol} 
+                              </span>
+                            </div>
+                          </TableCell>
+                          <TableCell align="right">
+                            {item.latestPrice} $
+                          </TableCell>
+                          <TableCell align="right">
+                            {item.changePercent}%
+                          </TableCell>
+                          <TableCell align="right">
+                            {item.marketCap} $
+                          </TableCell>
+                        </TableRow>))}
+                </TableBody>
+              </Table>
+            )}
+          </TableContainer>
+  
+          {/* Comes from @material-ui/lab */}
+          <Pagination
+            count={(handleCoinSearch()?.length / 10).toFixed(0)}
+            style={{
+              padding: 20,
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            classes={{ ul: classes.pagination }}
+            onChange={(_, value) => {
+              setPage(value);
+              window.scroll(0, 450);
+            }}
+          />
+        </Container>
+      </ThemeProvider>
     );
   }
 
