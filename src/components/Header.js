@@ -49,7 +49,7 @@ function Header() {
               variant="h6"
               className={classes.title}
             >
-              TradeNation
+              <img src="http://drive.google.com/uc?export=view&id=1JaWG_Q7V1kRHEMzrmK3vmTHbeTz2_So5" alt="TradeNation" />
             </Typography>
             {/* <Button color="inherit">Login</Button> */}
             <Select
