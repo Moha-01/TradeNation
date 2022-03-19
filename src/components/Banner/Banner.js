@@ -40,7 +40,7 @@ function Banner() {
 
   return (
     <div className={classes.banner}>
-      <img src="logoTransparent.png" alt="Logo" class = "center"></img>
+      
       <Container className={classes.bannerContent}>
         <div className={classes.tagline}>
           <Typography
@@ -51,7 +51,7 @@ function Banner() {
               fontFamily: "Montserrat",
             }}
           >
-              TradeNation
+              <img src="http://drive.google.com/uc?export=view&id=1JaWG_Q7V1kRHEMzrmK3vmTHbeTz2_So5" alt="TradeNation" />
           </Typography>
           <Typography
             variant="subtitle2"
