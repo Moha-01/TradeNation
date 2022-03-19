@@ -5,9 +5,13 @@ import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 import { TrendingCoins } from "../../config/api";
 import { numberWithCommas } from "../CoinsTable";
+import { CryptoState } from "../../CryptoContext";
+import { StockPrice } from "../../config/api";
 
 const Carousel = () => {
+  const [stocks, setStocks] = useState([]);
   const [trending, setTrending] = useState([]);
+  const { tablePage } = CryptoState();
 
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins("USD"));
@@ -16,10 +20,19 @@ const Carousel = () => {
     setTrending(data);
   };
 
+  const fetchStocks = async (symbol) => {
+    const { data } = await axios.get(StockPrice(symbol));
+
+    console.log(data);
+    setStocks(prevArray => [...prevArray, data]);
+  };
+
   useEffect(() => {
     fetchTrendingCoins();
+    fetchStocks("IBM");
+    fetchStocks("TSLA");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, ["USD"]);
+  }, [tablePage]);
 
   const useStyles = makeStyles((theme) => ({
     carousel: {
@@ -39,9 +52,11 @@ const Carousel = () => {
 
   const classes = useStyles();
 
+  if(tablePage === "COINS"){
   const items = trending.map((coin) => {
     let profit = coin?.price_change_percentage_24h >= 0;
 
+    
     return (
       <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
         <img
@@ -70,6 +85,55 @@ const Carousel = () => {
     );
   });
 
+
+  const responsive = {
+    0: {
+      items: 2,
+    },
+    512: {
+      items: 4,
+    },
+  };
+
+  return (
+    <div className={classes.carousel}>
+      <AliceCarousel
+        mouseTracking
+        infinite
+        autoPlayInterval={1000}
+        animationDuration={1500}
+        disableDotsControls
+        disableButtonsControls
+        responsive={responsive}
+        items = {items}
+        autoPlay
+      />
+    </div>
+  );
+}
+if(tablePage === "STOCKS"){
+  const items = stocks.map((coin) => {
+    return (
+      <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
+        <span>
+          {coin.companyName}
+          &nbsp;
+
+        </span>
+        <span style={{ fontSize: 22, fontWeight: 500 }}>
+          {coin.symbol}
+        </span>
+        <span
+            style={{
+              fontWeight: 500,
+            }}
+          >
+            {coin.changePercent}%
+          </span>
+      </Link>
+    );
+  });
+
   const responsive = {
     0: {
       items: 2,
@@ -94,6 +158,7 @@ const Carousel = () => {
       />
     </div>
   );
+}
 };
 
 export default Carousel;
