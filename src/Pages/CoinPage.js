@@ -11,18 +11,13 @@ import { numberWithCommas } from "../components/CoinsTable";
 
 const CoinPage = () => {
   const { id } = useParams();
-  const [stock, setStock] = useState();
   const [coin, setCoin] = useState();
   
 
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
-    const {stock} = await axios.get(StockPrice("IBM"));
-    console.log(stock);
-
     setCoin(data);
-    setStock(stock);
   };
 
   useEffect(() => {
@@ -96,7 +91,6 @@ const CoinPage = () => {
           style={{ marginBottom: 20 }}
         />
         <Typography variant="h3" className={classes.heading}>
-          {stock?.symbol}
         </Typography>
         <Typography variant="subtitle1" className={classes.description}>
           {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
@@ -104,7 +98,7 @@ const CoinPage = () => {
         <div className={classes.marketData}>
           <span style={{ display: "flex" }}>
             <Typography variant="h5" className={classes.heading}>
-              Rank: Hi
+              Rank:
             </Typography>
             &nbsp; &nbsp;
             <Typography
@@ -113,7 +107,6 @@ const CoinPage = () => {
                 fontFamily: "Montserrat",
               }}
             >
-              {stock?.marketCap}
             </Typography>
           </span>
 
