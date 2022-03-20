@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import CoinPage from "./Pages/CoinPage";
 import StockPage from"./Pages/StockPage";
 import Header from "./components/Header";
+import LoginPage from "./LoginPage";
 
 import { CryptoState } from "../src/CryptoContext";
 
@@ -27,7 +28,8 @@ function App() {
     <BrowserRouter>
       <div className={classes.App}>
         <Header />
-        <Route path="/" component={Homepage} exact />
+        <Route path="/" component={LoginPage} exact />
+        <Route path="/home" component={Homepage} exact />
         <Route path="/coins/:id" component={CoinPage} exact />
         <Route path="/stocks/:symbol" component={StockPage} exact />
       </div>
