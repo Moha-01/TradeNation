@@ -20,8 +20,10 @@ import axios from "axios";
 import { CoinList } from "../config/api";
 import { StockLogo } from "../config/api";
 import { StockPrice } from "../config/api";
+import { StockList} from "../config/api";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
+
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -33,6 +35,8 @@ export default function CoinsTable() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [stockName, setstockName] = useState();
+  const [loaded, setLoaded] = useState(false);
 
   const { tablePage } = CryptoState();
 
@@ -68,7 +72,6 @@ export default function CoinsTable() {
     setLoading(true);
     const { data } = await axios.get(CoinList("USD"));
     console.log(data);
-
     setCoins(data);
     setLoading(false);
   };
@@ -83,19 +86,33 @@ export default function CoinsTable() {
     })
     console.log(data);
     setStocks(prevArray => [...prevArray, data]);
-
     setLoading(false);
   };
 
-  
+  const fetchStockNames = async () => {
+    setLoading(true);
+    axios.get(StockList())
+    .then((response) => {
+      console.log(response.data);
+      setstockName(response.data);
+    });
+    setLoading(false);
+  }
+
+
+
   //Alle Stocks are fetched seperately, maybe a List can be implemented
   useEffect(() => {
     fetchCoins();
+    if(loaded === false){
+    //fetchStockNames();
     fetchStocks("IBM");
     fetchStocks("AMZN");
     fetchStocks("TSLA");
     fetchStocks("NVDA");
-    //fetchStocks("BNTX");
+    fetchStocks("BNTX");
+  }
+    setLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
 
@@ -253,8 +270,7 @@ export default function CoinsTable() {
         <Container style={{ textAlign: "center" }}>
           <Typography
             variant="h4"
-            style={{ margin: 18, fontFamily: "Montserrat" }}
-          >
+            style={{ margin: 18, fontFamily: "Montserrat" }}>
             Stock List
           </Typography>
           <TextField

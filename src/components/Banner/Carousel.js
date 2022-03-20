@@ -12,6 +12,7 @@ import { StockLogo } from "../../config/api";
 const Carousel = () => {
   const [stocks, setStocks] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const { tablePage } = CryptoState();
 
   const fetchTrendingCoins = async () => {
@@ -35,10 +36,14 @@ const Carousel = () => {
 
   useEffect(() => {
     fetchTrendingCoins();
-    fetchStocks("IBM");
-    fetchStocks("TSLA");
-    fetchStocks("AMZN");
-    fetchStocks("NVDA");
+    if(loaded === false){
+      fetchStocks("IBM");
+      fetchStocks("TSLA");
+      fetchStocks("AMZN");
+      fetchStocks("NVDA");
+      setLoaded(true);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
 
