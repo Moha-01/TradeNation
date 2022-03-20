@@ -7,6 +7,7 @@ import { TrendingCoins } from "../../config/api";
 import { numberWithCommas } from "../CoinsTable";
 import { CryptoState } from "../../CryptoContext";
 import { StockPrice } from "../../config/api";
+import { StockLogo } from "../../config/api";
 
 const Carousel = () => {
   const [stocks, setStocks] = useState([]);
@@ -23,6 +24,11 @@ const Carousel = () => {
   const fetchStocks = async (symbol) => {
     const { data } = await axios.get(StockPrice(symbol));
 
+    axios.get(StockLogo(symbol))
+    .then((response) => {
+      data.url = response.data.url;
+    })
+
     console.log(data);
     setStocks(prevArray => [...prevArray, data]);
   };
@@ -31,6 +37,8 @@ const Carousel = () => {
     fetchTrendingCoins();
     fetchStocks("IBM");
     fetchStocks("TSLA");
+    fetchStocks("AMZN");
+    fetchStocks("NVDA");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
 
@@ -115,6 +123,12 @@ if(tablePage === "STOCKS"){
   const items = stocks.map((coin) => {
     return (
       <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
+        <img
+          src={coin.url}
+          alt={coin.symbol}
+          height="80"
+          style={{ marginBottom: 10 }}
+        />
         <span>
           {coin.companyName}
           &nbsp;

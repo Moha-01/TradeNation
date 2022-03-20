@@ -94,6 +94,7 @@ export default function CoinsTable() {
     fetchStocks("IBM");
     fetchStocks("AMZN");
     fetchStocks("TSLA");
+    fetchStocks("NVDA");
     //fetchStocks("BNTX");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
