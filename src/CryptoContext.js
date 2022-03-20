@@ -9,7 +9,6 @@ const CryptoContext = ({ children }) => {
   useEffect(() => {
     if (tablePage === "COINS") setSymbol("COINS");
     else if (tablePage === "STOCKS") setSymbol("STOCKS");
-    else if (tablePage === "FOREX") setSymbol("FOREX");
   }, [tablePage]);
 
   return (

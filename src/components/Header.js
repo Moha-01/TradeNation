@@ -62,7 +62,6 @@ function Header() {
             >
               <MenuItem value={"COINS"}>COINS</MenuItem>
               <MenuItem value={"STOCKS"}>STOCKS</MenuItem>
-              <MenuItem value={"FOREX"}>FOREX</MenuItem>
             </Select>
           </Toolbar>
         </Container>
