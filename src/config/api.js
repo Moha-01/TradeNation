@@ -1,3 +1,4 @@
+//Coins
 export const CoinList = (currency) =>
   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
 
@@ -10,6 +11,7 @@ export const HistoricalChart = (id, days = 365, currency) =>
 export const TrendingCoins = (currency) =>
   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;
 
+  //Stock
 export const StockList = () =>
   `https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=pk_d95aa31868b74f6db51b05ecc5376ce5`;
 
@@ -27,6 +29,9 @@ export const StockCompany = (symbol) =>
 
 export const StockStats = (symbol) =>
   `https://cloud.iexapis.com/stable/stock/${symbol}/stats?token=pk_d95aa31868b74f6db51b05ecc5376ce5`;
+
+  //Forx
+  
 
 
 
