@@ -20,6 +20,7 @@ Weitere Installationen:
 - npm i react-chartjs-2
 - npm install assert --save
 - npm install buffer --save
+- npm install -g json-server
 
 
 By fehlern mit --force instalieren
@@ -38,3 +39,8 @@ pk_74ca0d7c96c64d44ad82eccb5c71a8f9
 
 
 Ports: 3000, 3500
+
+
+Run:
+- npm start
+- json-server db.json --port=3500
