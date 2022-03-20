@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import { CoinList } from "../config/api";
+import { StockLogo } from "../config/api";
 import { StockPrice } from "../config/api";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
@@ -75,8 +76,14 @@ export default function CoinsTable() {
   const fetchStocks = async (symbol) => {
     setLoading(true);
     const { data } = await axios.get(StockPrice(symbol));
+    
+    axios.get(StockLogo(symbol))
+    .then((response) => {
+      data.url = response.data.url;
+    })
     console.log(data);
     setStocks(prevArray => [...prevArray, data]);
+
     setLoading(false);
   };
 
@@ -292,7 +299,13 @@ export default function CoinsTable() {
                               display: "flex",
                               gap: 15,
                             }}
-                          >
+                          >                     
+                          <img
+                          src={item.url}
+                          alt={item.symbol}
+                          height="50"
+                          style={{ marginBottom: 10 }}
+                        />
                             <div
                               style={{ display: "flex", flexDirection: "column" }}
                             >
