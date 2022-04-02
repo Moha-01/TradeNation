@@ -1,0 +1,48 @@
+{
+  "auth": [
+    {
+      "id": 1,
+      "name": "admin",
+      "username": "admin",
+      "email": "admin@admin.de",
+      "password": "admin"
+    },
+    {
+      "id": 2,
+      "name": "user",
+      "username": "user",
+      "email": "user@user.de",
+      "password": "user"
+    },
+    {
+      "user": "admin",
+      "pwd": "admin",
+      "id": 3
+    },
+    {
+      "user": "admin",
+      "pwd": "admin",
+      "id": 4
+    },
+    {
+      "user": "admin",
+      "pwd": "admin",
+      "id": 5
+    },
+    {
+      "user": "admin",
+      "pwd": "admin",
+      "id": 6
+    },
+    {
+      "user": "admin",
+      "pwd": "admin",
+      "id": 7
+    },
+    {
+      "user": "admin",
+      "pwd": "admin",
+      "id": 8
+    }
+  ]
+}
