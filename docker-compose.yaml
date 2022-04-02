@@ -13,7 +13,7 @@ services:
   reactapp:
     build: ./TradeNation
     ports:
-      - "3000:3000"
+      - "3005:3000"
     depends_on:
       - json-server
-      
+  

@@ -47,3 +47,4 @@ Run:
 
 
 docker-compose up --build
+docker save -o [.tar] [image]
