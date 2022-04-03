@@ -16,17 +16,17 @@ const CoinPage = () => {
 
 
   const fetchCoin = async () => {
-    const { data } = await axios.get(SingleCoin(id));
+    const { data } = await axios.get(SingleCoin(id)); //Store Data from API about the Coin in Array
     setCoin(data);
   };
 
   useEffect(() => {
     console.log("CoinPage");
-    fetchCoin();
+    fetchCoin();      //Method which is used to get info from API is called
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({    //makeStyle (MaterialUI) ist used in order to create new style
     container: {
       display: "flex",
       [theme.breakpoints.down("md")]: {

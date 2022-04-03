@@ -11,24 +11,24 @@ import { numberWithCommas } from "../components/CoinsTable";
 
 const StockPage = () => {
   const { symbol } = useParams();
-  const [stock, setStock] = useState();
-  const [stockImage, setStockImage] = useState();
-  const [stockInfo, setStockInfo] = useState();
+  const [stock, setStock] = useState();     //stores data about stock
+  const [stockImage, setStockImage] = useState(); //stores URL to image of Stock
+  const [stockInfo, setStockInfo] = useState();   //description of company
 
 
-  const fetchStock = async () => {
+  const fetchStock = async () => {    //Methode is used to get all the information from APIs
     const { data } = await axios.get(StockPrice(symbol));
     setStock(data);
     console.log(data);
     axios.get(StockLogo(symbol))
     .then((response) => {
       console.log(response.data.url);
-      setStockImage(response.data.url);
+      setStockImage(response.data.url);   //save URL of stock logo
     })
     axios.get(StockCompany(symbol))
     .then((response) => {
       console.log(response.data.description);
-      setStockInfo(response.data.description);
+      setStockInfo(response.data.description);  //description of company is saved
     })
   };
 
@@ -97,7 +97,7 @@ const StockPage = () => {
     <div className={classes.container}>
       <div className={classes.sidebar}>
         <img
-          src={stockImage}
+          src={stockImage}      //URL of stock in order to show image
           alt={stock.symbol}
           height="200"
           style={{ marginBottom: 20 }}

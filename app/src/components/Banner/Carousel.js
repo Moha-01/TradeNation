@@ -16,10 +16,10 @@ const Carousel = () => {
   const { tablePage } = CryptoState();
 
   const fetchTrendingCoins = async () => {
-    const { data } = await axios.get(TrendingCoins("USD"));
+    const { data } = await axios.get(TrendingCoins("USD"));   //fetch trending coins from API
 
     console.log(data);
-    setTrending(data);
+    setTrending(data);  //save received data
   };
 
   const fetchStocks = async (symbol) => {
@@ -31,17 +31,17 @@ const Carousel = () => {
     })
 
     console.log(data);
-    setStocks(prevArray => [...prevArray, data]);
+    setStocks(prevArray => [...prevArray, data]); //append stocks array with new fetched stocks
   };
 
   useEffect(() => {
     fetchTrendingCoins();
-    if(loaded === false){
+    if(loaded === false){ //boolean loaded is used to control the fetching. Fetching should only take place once
       fetchStocks("IBM");
       fetchStocks("TSLA");
       fetchStocks("AMZN");
       fetchStocks("NVDA");
-      setLoaded(true);
+      setLoaded(true);    //after fetching 
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +65,7 @@ const Carousel = () => {
 
   const classes = useStyles();
 
-  if(tablePage === "COINS"){
+  if(tablePage === "COINS"){  //if site is set to coins following code is executed
   const items = trending.map((coin) => {
     let profit = coin?.price_change_percentage_24h >= 0;
 
@@ -124,7 +124,7 @@ const Carousel = () => {
     </div>
   );
 }
-if(tablePage === "STOCKS"){
+if(tablePage === "STOCKS"){   //if site is set to stocks the following code is executed
   const items = stocks.map((coin) => {
     return (
       <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
@@ -164,7 +164,7 @@ if(tablePage === "STOCKS"){
 
   return (
     <div className={classes.carousel}>
-      <AliceCarousel
+      <AliceCarousel    //Component generates the rotating carousel
         mouseTracking
         infinite
         autoPlayInterval={1000}
@@ -172,7 +172,7 @@ if(tablePage === "STOCKS"){
         disableDotsControls
         disableButtonsControls
         responsive={responsive}
-        items={items}
+        items={items}   
         autoPlay
       />
     </div>

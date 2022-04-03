@@ -65,7 +65,7 @@ function Banner() {
           </Typography>
         </div>
         
-        <Carousel />
+        <Carousel />  //Carousel Component
       </Container>
     </div>
   );

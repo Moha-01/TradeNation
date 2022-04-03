@@ -33,10 +33,10 @@ export default function CoinsTable() {
   const [coins, setCoins] = useState([]);
   const [stocks, setStocks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");     //searchword is stored here. Inital value is ""
+  const [page, setPage] = useState(1);          
   const [stockName, setstockName] = useState();
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false); //boolean for controlling the fetching process
 
   const { tablePage } = CryptoState();
 
@@ -68,7 +68,7 @@ export default function CoinsTable() {
     },
   });
 
-  const fetchCoins = async () => {
+  const fetchCoins = async () => {    //get coin data from API
     setLoading(true);
     const { data } = await axios.get(CoinList("USD"));
     console.log(data);
@@ -76,7 +76,7 @@ export default function CoinsTable() {
     setLoading(false);
   };
 
-  const fetchStocks = async (symbol) => {
+  const fetchStocks = async (symbol) => { //get stock data from API
     setLoading(true);
     const { data } = await axios.get(StockPrice(symbol));
     
@@ -116,7 +116,7 @@ export default function CoinsTable() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tablePage]);
 
-  const handleCoinSearch = () => {
+  const handleCoinSearch = () => {    //search function for filtering the coins according to the searchword
     return coins.filter(
       (coin) =>
         coin.name.toLowerCase().includes(search) ||
@@ -124,7 +124,7 @@ export default function CoinsTable() {
     );
   };
 
-  const handleStockSearch = () => {
+  const handleStockSearch = () => { //search function for filtering the stocks according to the searchword
     return stocks.filter(
       (stock) =>
         stock.companyName.toLowerCase().includes(search) ||
@@ -132,7 +132,7 @@ export default function CoinsTable() {
     );
   };
 
-  if(tablePage === "COINS"){
+  if(tablePage === "COINS"){   //if site is set to coins
     return (
       <ThemeProvider theme={darkTheme}>
         <Container style={{ textAlign: "center" }}>
@@ -264,7 +264,7 @@ export default function CoinsTable() {
     );
   }
 
-  if(tablePage === "STOCKS"){
+  if(tablePage === "STOCKS"){   //if the page is set to stocks
     return (
       <ThemeProvider theme={darkTheme}>
         <Container style={{ textAlign: "center" }}>

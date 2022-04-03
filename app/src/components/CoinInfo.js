@@ -37,9 +37,9 @@ const CoinInfo = ({ coin }) => {
   const classes = useStyles();
 
   const fetchHistoricData = async () => {
-    const { data } = await axios.get(HistoricalChart(coin.id, days, "USD"));
+    const { data } = await axios.get(HistoricalChart(coin.id, days, "USD"));  //fetches Data about coin from API
     setflag(true);
-    setHistoricData(data.prices);
+    setHistoricData(data.prices);  //stores feteched data in array
   };
 
   console.log(coin);
@@ -69,9 +69,9 @@ const CoinInfo = ({ coin }) => {
           />
         ) : (
           <>
-            <Line
+            <Line     //Creates LineChart from Chartjs
               data={{
-                labels: historicData.map((coin) => {
+                labels: historicData.map((coin) => {    //calculates the time labels
                   let date = new Date(coin[0]);
                   let time =
                     date.getHours() > 12
