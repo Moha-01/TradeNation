@@ -2,7 +2,7 @@
 Get All The Info Regarding Your Favorite Crypto Currency (DHBW Mosbach Web-Services Project)
 
 
-###Matrikel Nummern:
+###MatrNr.:
 1. Mohamed Haji: 8528264
 2. Lukas Hautzinger: 4873531
 3. Dominic Merkle: 8233288
