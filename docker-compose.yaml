@@ -12,5 +12,5 @@ services:
   reactapp:
       build: ./app
       ports:
-        - "3005:3005"
+        - "3005:3000"
   

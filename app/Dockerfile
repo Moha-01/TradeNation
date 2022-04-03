@@ -25,7 +25,6 @@ RUN npm install buffer --save
 # add app
 COPY . ./
 
-EXPOSE 3005
 
 # start app
 CMD ["npm", "start"]

@@ -1,6 +1,12 @@
 # TradeNation
 Get All The Info Regarding Your Favorite Crypto Currency (DHBW Mosbach Web-Services Project)
 
+
+###Matrikel Nummern:
+1. Mohamed Haji: 8528264
+2. Lukas Hautzinger: 4873531
+3. Dominic Merkle: 8233288
+
 ##Presentation:
 https://docs.google.com/presentation/d/1oT9l2WuL1Awr_BXKkrrvWhsy5lTQNlwSimTNV-JfG-s/edit?usp=sharing
 
@@ -57,7 +63,7 @@ API Keys:
 - https://www.alphavantage.co/
   Key: DPN5UETZNKBHUWSC
 
-- https://cloud.iexapis.com/
+- https://cloud.iexapis.com/        (50.000 Requests)
   Key 1: pk_d95aa31868b74f6db51b05ecc5376ce5
   Key 2: pk_a18f9fb063d24119b73a8f532bda731c
   Key 3: pk_99dc5983c38b4b46bbc750f6b2081537
@@ -81,3 +87,7 @@ Docker CLI:
 Website:
   / -> Login   (Login is not done yet)
   /home -> Dashboard (almost done)
+
+Note:
+- Docker Desktop is 100% functional. Docker Portainer ist not functional
+- Since this was a group work, we worked on the rest of the tasks in collaboration, so it was not clear to us who we should assign them to
