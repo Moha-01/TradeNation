@@ -22,8 +22,7 @@ function App() {
 
   const { tablePage } = CryptoState();
 
-
-
+  // Pages Navigation Setup
   return (
     <BrowserRouter>
       <div className={classes.App}>

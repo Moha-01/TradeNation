@@ -5,6 +5,7 @@ import AuthContext from './context/AuthProvider';
 
 import axios from './api/axios';
 
+// Get the LOGIN_URL for the DB (Users table)
 const LOGIN_URL = '/auth';
 
 
@@ -20,18 +21,22 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    // focus on the username input
     useEffect(() => {
         userRef.current.focus();
     },[])
 
+    // unset Error Message
     useEffect(() => {
         setErrMsg('');
     }, [user,pwd])
 
+    // handle the login form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         
         try {
+            // send the login request to the server 
             const response = await axios.post(LOGIN_URL, JSON.stringify({user, pwd}), {
                 headers: {
                     'Content-Type': 'application/json'
@@ -39,6 +44,7 @@ const Login = () => {
                 withCredentials: true
             }
             );
+            
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             
@@ -46,6 +52,7 @@ const Login = () => {
             setUser('');
             setPwd ('');
             setSuccess(true);
+            
         } catch (err) {
             if(!err?.response) {
                 setErrMsg('No Server Response');

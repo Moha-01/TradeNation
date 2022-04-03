@@ -1,9 +1,9 @@
-
+#### ------------- Docker Compose ------------- ####
 version: "2.9"
 services:
   json-server:
       image: vimagick/json-server
-      command: -H 0.0.0.0 -p 3500 -w /data/db.json
+      command: -H 0.0.0.0 -p 3500 -w db.json
       ports:
       - "3500:3500"
       volumes:
@@ -12,7 +12,5 @@ services:
   reactapp:
       build: ./app
       ports:
-        - "3005:3000"
-      depends_on:
-        - json-server
+        - "3005:3005"
   

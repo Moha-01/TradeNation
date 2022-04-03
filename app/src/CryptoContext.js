@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const Crypto = createContext();
 
+// Page Option between COINS & STOCKS (Set Default as COINS)
 const CryptoContext = ({ children }) => {
   const [tablePage, setPage] = useState("COINS");
   const [symbol, setSymbol] = useState("COINS");
